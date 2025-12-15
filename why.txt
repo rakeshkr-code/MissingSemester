@@ -1,0 +1,4 @@
+* This course is for 'computing ecosystem literacy'
+* Want to be lot more efficient about how we use our computers. Because we're using computers as a tool for ourselves, not just for building websites etc. 
+* Want to be proficient in tools as the skills of a 'hacker' (a proficient programmer), rather than a 'cracker' (a security hacker). 
+

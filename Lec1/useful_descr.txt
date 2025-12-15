@@ -1,0 +1,57 @@
+* Commands: The shell executes a program (ie, command) specified by the first word, passing subsequent, whitespace-separated words as arguments. Eg commands are `date`, `ls`, rtc. 
+* Options: Flags or switches that modify the behavior of the command, usually starting with `-` or `--` (eg, `-l`, `--recursive`). 
+* Arguments: Whitespace-separated things that follow the program name (ie, commands). These are targets or inputs the command operates on, such as files, directories, or patterns (eg, `/home/user`, `file.txt`). 
+* How does the shell know what these programs (commands) are?
+  - The computer has a bunch of built-in programs (commands) that comes with the machine. These are stored on the filesystem. 
+  - The shell has a way to determine where a program is located, basically a way to search for programs (commands). 
+  - It does this through `$PATH` environment variable. We can run `echo $PATH` and see the paths. 
+  - `echo $PATH` shows all the paths the shell will search for programs (or commands). It prints a colon (:) separated list of paths on the machine. 
+  - It will look for a file that matches the name of the program or command in each of those directores. 
+  - The `which` command can show which executable file (path) will be run for a given command (eg, echo, date, etc). 
+* What are paths?
+  - Paths are a way to name the location of a file on our computer. On linux or macos the paths are separated by forward slashes (/). In Windows separated by backslashes (\). 
+  - In linux everything lives under the root namespace, so all paths start with a slash (/). And all are absolute paths. 
+  - On Windows, there is one root for every partition (or disk) and paths start with `C:\` or `D:\`. 
+  - Absolute path: means the paths that fully determine the location of a file, and reletive paths are reletive to current directory. 
+  - `pwd`: The way we find out where we currently are is by executing the command `pwd`, called as 'print working directory'. 
+* `pwd`: Pring working directory.
+* `cd`: Change working directory. 
+* Special Directories: `.` and `..` 
+  - `.`: means the current directory,
+  - `..`: means the parent directory.
+  - `cd ./home`: means go to the home directory under the current directory. 
+  - `cd ~`: will land us to home directory. 
+  - `cd -`: will land me to the directory where I was previously in. 
+* `ls` and `ls -l`: ls prints all the files in my current directory. `-l` option also lists down permissions and other infos. `-l` means long listing format. 
+* `commandname --help`: will print useful infor about the program or command. 
+* Permissions: When we execute `ls -l` 
+  - In each row the first `d` or `-` says it is a diectory or a file. 
+  - Out of next 9 chars are root permissions, group user permissions, and others permissions.
+  - Three types of permissions: rwx, r is read, w is write, and x is execute permission. `-` means Do Not have that permission. 
+  - Read on  directory is to list it's content, Write is to rename create or remove files within that directory, Execute is to enable search, means am i allowed to enter into the directory. 
+  - If we have write permission on  file but not on it's directory, then we can empty the file, but cannot delete the file. 
+  - To `cd` into a directory, we must have the execute permission on all parent directory of that directory and the directory itself. 
+* `mv` and `cp`
+  - `mv`: Move or Rename a file. 
+  - `cp`: Copy a file. 
+* `rm`: Removing a file. `rm -r` to remove a dir recursively (ALEART).
+* Streams:
+  - Every program has two streams mainly, input and output stream. By default the input stream is keyboard. And default output stream is terminal. 
+  - The shell gives us a way to rewire these streams, to change where the input and output of a program are pointed. 
+  - `Program < file`: Redirects the program's input stream from a file. 
+  - `Program > file`: Redirects the program's output stream to a file (overwrites). 
+  - `Program >> file`: Appends the output stream to a file. 
+  - Example: `echo hello > file`: Output of the program `echo hello` will go to the file. 
+  - Example: `cat file` will just print the content of the file.
+  - Example: `cat < file1 > file2`: I will first execute `cat < file1`, which means take the content of file1 and set that content to be the input of the cat command, which is same as `cat file1`. Then the `> file2` part will be executed. Here the output of `cat < file1` will be appended to file2. 
+* Pipes (|): 
+  - The pipe operator chains programs, making the output of one the input of the next. 
+  - The programs themselves do not 'know' about the pipe; the shell sets up the connection between the streams. 
+  - For example `ls -l / | tail -n1`: this command consists of two commands or program `ls -l /` that lists down files in root (/) dir, and `tail -n1` shows only last 1 line from it's input stream. 
+  - `curl --head --silent google.com` will print all the http headers from google.com
+  - `curl --head --silent google.com | grep -i content-length` will print the content length header
+* `sudo command`:
+  - sudo means do the following command as a super user or root user. 
+* Sys and Kernel
+  - `cd sys` and then `ls`
+  - This filesystem is no actually the files on my computer, instead these are various kernel parameters. 
